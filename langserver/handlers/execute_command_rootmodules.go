@@ -11,7 +11,7 @@ import (
 )
 
 const rootmodulesCommandResponseVersion = 0
-const rootmodulesCommandFileArgNotFound code.Code = -32004
+const rootmodulesCommandURIArgNotFound code.Code = -32004
 
 type rootmodulesCommandResponse struct {
 	Version     int              `json:"version"`
@@ -29,13 +29,12 @@ func executeCommandRootModulesHandler(ctx context.Context, args commandArgs) (in
 		return nil, err
 	}
 
-	file, ok := args.GetString("file")
-	if !ok || file == "" {
-		return nil, fmt.Errorf("%w: expected file argument to be set", rootmodulesCommandFileArgNotFound.Err())
+	uri, ok := args.GetString("uri")
+	if !ok || uri == "" {
+		return nil, fmt.Errorf("%w: expected uri argument to be set", rootmodulesCommandURIArgNotFound.Err())
 	}
 
-	uri := lsp.DocumentURI(file)
-	fh := ilsp.FileHandlerFromDocumentURI(uri)
+	fh := ilsp.FileHandlerFromDocumentURI(lsp.DocumentURI(uri))
 
 	cf, err := lsctx.RootModuleCandidateFinder(ctx)
 	if err != nil {
