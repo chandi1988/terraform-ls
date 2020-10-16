@@ -40,7 +40,7 @@ func TestLangServer_workspaceExecuteCommand_rootmodules_argumentError(t *testing
 		"textDocument": {
 			"version": 0,
 			"languageId": "terraform",
-			"text": "provider \"github\"\n\n}\n",
+			"text": "provider \"github\" {}",
 			"uri": %q
 		}
 	}`, testFileURI)})
@@ -84,7 +84,7 @@ func TestLangServer_workspaceExecuteCommand_rootmodules_basic(t *testing.T) {
 		"textDocument": {
 			"version": 0,
 			"languageId": "terraform",
-			"text": "provider \"github\"\n\n}\n",
+			"text": "provider \"github\" {}",
 			"uri": %q
 		}
 	}`, testFileURI)})

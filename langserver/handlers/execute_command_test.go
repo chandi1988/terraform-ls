@@ -41,7 +41,7 @@ func TestLangServer_workspaceExecuteCommand_noCommandHandlerError(t *testing.T) 
 		"textDocument": {
 			"version": 0,
 			"languageId": "terraform",
-			"text": "provider \"github\"\n\n}\n",
+			"text": "provider \"github\" {}",
 			"uri": %q
 		}
 	}`, testFileURI)})
