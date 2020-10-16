@@ -10,7 +10,8 @@ import (
 
 func TestLangServer_workspaceExecuteCommand_noCommandHandlerError(t *testing.T) {
 	tmpDir := TempDir(t)
-	testFileURI := fmt.Sprintf("%s/main.tf", tmpDir.Dir())
+	testFileURI := fmt.Sprintf("%s/main.tf", tmpDir.URI())
+
 	InitPluginCache(t, tmpDir.Dir())
 
 	ls := langserver.NewLangServerMock(t, NewMockSession(&MockSessionInput{
@@ -41,7 +42,7 @@ func TestLangServer_workspaceExecuteCommand_noCommandHandlerError(t *testing.T) 
 			"version": 0,
 			"languageId": "terraform",
 			"text": "provider \"github\"\n\n}\n",
-			"uri": "%s"
+			"uri": %q
 		}
 	}`, testFileURI)})
 

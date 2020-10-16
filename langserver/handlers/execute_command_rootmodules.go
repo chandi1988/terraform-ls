@@ -20,7 +20,7 @@ type rootmodulesCommandResponse struct {
 }
 
 type rootModuleInfo struct {
-	Path string `json:"path"`
+	URI string `json:"uri"`
 }
 
 func executeCommandRootModulesHandler(ctx context.Context, args commandArgs) (interface{}, error) {
@@ -47,7 +47,7 @@ func executeCommandRootModulesHandler(ctx context.Context, args commandArgs) (in
 	rootModules := make([]rootModuleInfo, len(candidates))
 	for i, candidate := range candidates {
 		rootModules[i] = rootModuleInfo{
-			Path: candidate.Path(),
+			URI: candidate.URI(),
 		}
 	}
 	return rootmodulesCommandResponse{

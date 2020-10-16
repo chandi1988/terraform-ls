@@ -63,6 +63,7 @@ func (rms RootModules) Paths() []string {
 
 type RootModule interface {
 	Path() string
+	URI() string
 	LoadError() error
 	StartLoading() error
 	IsLoadingDone() bool

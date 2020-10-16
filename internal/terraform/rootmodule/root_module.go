@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/go-version"
 	"github.com/hashicorp/terraform-config-inspect/tfconfig"
+	"github.com/hashicorp/terraform-ls/internal/filesystem"
 	"github.com/hashicorp/terraform-ls/internal/terraform/addrs"
 	"github.com/hashicorp/terraform-ls/internal/terraform/discovery"
 	"github.com/hashicorp/terraform-ls/internal/terraform/exec"
@@ -398,6 +399,10 @@ func (rm *rootModule) setLoadErr(err error) {
 
 func (rm *rootModule) Path() string {
 	return rm.path
+}
+
+func (rm *rootModule) URI() string {
+	return filesystem.URIFromPath(rm.path)
 }
 
 func (rm *rootModule) UpdateModuleManifest(lockFile File) error {

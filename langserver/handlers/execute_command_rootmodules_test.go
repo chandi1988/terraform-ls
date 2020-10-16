@@ -10,7 +10,7 @@ import (
 
 func TestLangServer_workspaceExecuteCommand_rootmodules_argumentError(t *testing.T) {
 	tmpDir := TempDir(t)
-	testFileURI := fmt.Sprintf("%s/main.tf", tmpDir.Dir())
+	testFileURI := fmt.Sprintf("%s/main.tf", tmpDir.URI())
 	InitPluginCache(t, tmpDir.Dir())
 
 	ls := langserver.NewLangServerMock(t, NewMockSession(&MockSessionInput{
@@ -41,7 +41,7 @@ func TestLangServer_workspaceExecuteCommand_rootmodules_argumentError(t *testing
 			"version": 0,
 			"languageId": "terraform",
 			"text": "provider \"github\"\n\n}\n",
-			"uri": "%s"
+			"uri": %q
 		}
 	}`, testFileURI)})
 
@@ -54,7 +54,7 @@ func TestLangServer_workspaceExecuteCommand_rootmodules_argumentError(t *testing
 
 func TestLangServer_workspaceExecuteCommand_rootmodules_basic(t *testing.T) {
 	tmpDir := TempDir(t)
-	testFileURI := fmt.Sprintf("%s/main.tf", tmpDir.Dir())
+	testFileURI := fmt.Sprintf("%s/main.tf", tmpDir.URI())
 	InitPluginCache(t, tmpDir.Dir())
 
 	ls := langserver.NewLangServerMock(t, NewMockSession(&MockSessionInput{
@@ -85,7 +85,7 @@ func TestLangServer_workspaceExecuteCommand_rootmodules_basic(t *testing.T) {
 			"version": 0,
 			"languageId": "terraform",
 			"text": "provider \"github\"\n\n}\n",
-			"uri": "%s"
+			"uri": %q
 		}
 	}`, testFileURI)})
 
@@ -102,9 +102,9 @@ func TestLangServer_workspaceExecuteCommand_rootmodules_basic(t *testing.T) {
 			"doneLoading": true,
 			"rootModules": [
 				{
-					"path": "%s"
+					"uri": %q
 				}
 			]
 		}
-	}`, tmpDir.Dir()))
+	}`, tmpDir.URI()))
 }
