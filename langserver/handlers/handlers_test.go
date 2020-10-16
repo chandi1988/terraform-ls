@@ -16,7 +16,7 @@ import (
 	"github.com/stretchr/testify/mock"
 )
 
-const intializeResponse = `{
+const initializeResponse = `{
 	"jsonrpc": "2.0",
 	"id": 1,
 	"result": {
@@ -49,7 +49,7 @@ func TestInitalizeAndShutdown(t *testing.T) {
 	    "capabilities": {},
 	    "rootUri": %q,
 	    "processId": 12345
-	}`, TempDir(t).URI())}, intializeResponse)
+	}`, TempDir(t).URI())}, initializeResponse)
 	ls.CallAndExpectResponse(t, &langserver.CallRequest{
 		Method: "shutdown", ReqParams: `{}`},
 		`{
@@ -74,7 +74,7 @@ func TestEOF(t *testing.T) {
 	    "capabilities": {},
 	    "rootUri": %q,
 	    "processId": 12345
-	}`, TempDir(t).URI())}, intializeResponse)
+	}`, TempDir(t).URI())}, initializeResponse)
 
 	ls.CloseClientStdout(t)
 
